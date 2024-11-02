@@ -1,0 +1,88 @@
+Reuest Bin Data
+
+@startuml
+actor User
+participant "User Service" as US
+participant "Waste Bin Service" as WBS
+participant "Notification Service" as NS
+participant "Public API" as API
+participant "Data Ingestion Service" as DIS
+participant "IoT Device" as IOT
+
+User -> US: Login request
+US -> User: Login response (success)
+
+User -> WBS: Check bin status request (with bin ID)
+WBS -> DIS: Request current bin status data
+DIS -> IOT: Fetch real-time data from IoT Core
+IOT -> DIS: Send data to Data Ingestion Service
+DIS -> WBS: Provide bin status
+WBS -> User: Return bin status
+
+WBS -> NS: Notify if bin full (if applicable)
+NS -> API: Check weather data (OpenWeatherMap API)
+API -> NS: Return weather data
+NS -> Admin: Send bin full alert and weather update
+@enduml
+
+
+Complaint Sequence:
+@startuml
+actor User
+participant "User Service" as US
+participant "Complaint Management Service" as CMS
+participant "Notification Service" as NS
+participant "Admin" as Admin
+
+User -> US: Register Complaint (details)
+US -> CMS: Forward complaint details
+CMS -> CMS: Save complaint in database
+CMS -> NS: Send notification of new complaint
+NS -> Admin: Notify new complaint registration
+
+User <- US: Complaint registration confirmation
+@enduml
+
+
+Bin Full Notification:
+@startuml
+actor Admin
+participant "Notification Service" as NS
+participant "Bin Service" as BS
+participant "Collection Schedule Service" as CSS
+
+Admin -> NS: Receive bin full alert
+NS -> Admin: Notify admin of full bin
+
+Admin -> BS: Check bin details (bin ID)
+BS -> BS: Fetch bin status from database
+BS --> Admin: Provide bin details (status)
+
+Admin -> CSS: Create collection schedule for full bin
+CSS -> CSS: Update collection schedule
+CSS --> Admin: Collection schedule confirmation
+
+Admin -> NS: Notify users of collection schedule
+NS -> Users: Send collection schedule notification
+@enduml
+
+
+
+Data from IoT:
+@startuml
+actor "IoT Device" as IoT
+participant "AWS IoT Core" as IoTCore
+participant "Data Ingestion Service" as DIS
+participant "Waste Bin Service" as WBS
+
+IoT -> IoTCore: Collect real-time data (bin status)
+IoTCore -> IoTCore: Process and store data
+IoTCore -> DIS: Send data to Data Ingestion Service
+
+
+DIS -> WBS: Update waste bin status (with data)
+WBS -> WBS: Save updated status in database
+WBS --> DIS: Confirmation of update
+
+@enduml
+
