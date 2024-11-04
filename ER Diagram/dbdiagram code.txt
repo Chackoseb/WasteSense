@@ -1,0 +1,71 @@
+Table users {
+  _id ObjectId [pk]
+  username String [unique]
+  password String
+  email String [unique]
+  phoneNumber String
+  address_id ObjectId [unique] // Ensuring uniqueness for one-to-one
+  roles String[]
+}
+
+Table addresses {
+  _id ObjectId [pk]
+  street String
+  city String
+  state String
+  zipCode String
+}
+
+Table bins {
+  _id ObjectId [pk]
+  binId String [unique]
+  location_latitude Double
+  location_longitude Double
+  address_id ObjectId [unique]
+  fillLevel Double
+  type String
+  alerts Boolean
+}
+
+Table notifications {
+  _id ObjectId [pk]
+  recipientId ObjectId
+  message String
+  type String
+}
+
+Table waste_guides {
+  _id ObjectId [pk]
+  wasteItem String [unique]
+  category String
+}
+
+Table complaints {
+  _id ObjectId [pk]
+  userId ObjectId
+  title String
+  description String
+  status String
+}
+
+Table schedules {
+  _id ObjectId [pk]
+  scheduleId String [unique]
+  bins ObjectId[]
+  scheduledDate Date
+  status String
+}
+
+Table bin_data {
+  _id ObjectId [pk]
+  binId ObjectId
+  fillLevel Double
+}
+
+// Relationships
+Ref: complaints.userId > users._id
+Ref: bin_data.binId - bins._id
+Ref: schedules.bins > bins._id
+Ref: notifications.recipientId > users._id
+Ref: bins.address_id - addresses._id
+Ref: users.address_id - addresses._id

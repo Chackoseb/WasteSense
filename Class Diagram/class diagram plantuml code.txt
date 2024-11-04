@@ -1,0 +1,71 @@
+@startuml
+class User {
+  - ObjectId _id
+  - String username
+  - String password
+  - String email
+  - String phoneNumber
+  - Address address
+  - List<String> roles
+}
+
+class Address {
+  - String street
+  - String city
+  - String state
+  - String zipCode
+}
+
+class Bin {
+  - ObjectId _id
+  - String binId
+  - Double latitude
+  - Double longitude
+  - Address address
+  - Double fillLevel
+  - String type
+  - Boolean alerts
+}
+
+class Notification {
+  - ObjectId _id
+  - ObjectId recipientId
+  - String message
+  - String type
+}
+
+class WasteGuide {
+  - ObjectId _id
+  - String wasteItem
+  - String category
+}
+
+class Complaint {
+  - ObjectId _id
+  - ObjectId userId
+  - String title
+  - String description
+  - String status
+}
+
+class Schedule {
+  - ObjectId _id
+  - String scheduleId
+  - List<ObjectId> bins
+  - Date scheduledDate
+  - String status
+}
+
+class BinData {
+  - ObjectId _id
+  - ObjectId binId
+  - Double fillLevel
+}
+
+User "1" -- "1" Address
+Bin "1" -- "1" Address
+Complaint "*" --> "1" User : userId
+Notification "*" --> "1" User : recipientId
+BinData "1" --> "1" Bin : binId
+Schedule "1" --> "*" Bin : bins
+@enduml

@@ -1,0 +1,82 @@
+@startuml
+package "API Gateway" {
+    [APIGatewayComponent]
+}
+
+package "Service Registry" {
+    [ServiceRegistryComponent]
+}
+
+package "JWT Identity Service" {
+    [AuthControllerComponent]
+    [TokenServiceComponent]
+    [UserDetailsServiceComponent]
+    [AuthRepositoryComponent]
+}
+
+package "User Service" {
+    [UserControllerComponent]
+    [UserServiceComponent]
+    [UserRepositoryComponent]
+    [AuthMiddlewareComponent]
+}
+
+package "Bin Service" {
+    [BinControllerComponent]
+    [BinServiceComponent]
+    [BinRepositoryComponent]
+}
+
+package "Notification Service" {
+    [NotificationControllerComponent]
+    [NotificationServiceComponent]
+    [NotificationRepositoryComponent]
+}
+
+package "Data Service" {
+    [IoTDeviceHandlerComponent]
+    [DataIngestionServiceComponent]
+    [DataProcessorComponent]
+}
+
+package "Operations Service" {
+    [ComplaintControllerComponent]
+    [ScheduleControllerComponent]
+    [ComplaintServiceComponent]
+    [ScheduleServiceComponent]
+}
+
+package "Guide Service" {
+    [GuideControllerComponent]
+    [GuideServiceComponent]
+    [ExternalAPIHandlerComponent]
+}
+
+// Flow connections
+APIGatewayComponent --> AuthControllerComponent : "Route request for auth"
+AuthControllerComponent --> APIGatewayComponent : "Return auth response"
+APIGatewayComponent --> UserControllerComponent : "Invoke user service"
+APIGatewayComponent --> BinControllerComponent : "Invoke bin service"
+APIGatewayComponent --> NotificationControllerComponent : "Invoke notification service"
+APIGatewayComponent --> IoTDeviceHandlerComponent : "Invoke IoT service"
+APIGatewayComponent --> ComplaintControllerComponent : "Invoke complaint service"
+APIGatewayComponent --> GuideControllerComponent : "Invoke guide service"
+
+// Inter-service communications
+UserControllerComponent --> NotificationServiceComponent : "Send notifications"
+BinControllerComponent --> NotificationServiceComponent : "Trigger bin alerts"
+ComplaintControllerComponent --> UserControllerComponent : "Fetch user data"
+ScheduleControllerComponent --> BinControllerComponent : "Get bin status"
+DataIngestionServiceComponent --> BinServiceComponent : "Update bin status"
+DataIngestionServiceComponent --> NotificationServiceComponent : "Send data alerts"
+
+// Connections for service discovery
+ServiceRegistryComponent --> UserControllerComponent : "Service discovery"
+ServiceRegistryComponent --> BinControllerComponent : "Service discovery"
+ServiceRegistryComponent --> NotificationControllerComponent : "Service discovery"
+ServiceRegistryComponent --> IoTDeviceHandlerComponent : "Service discovery"
+ServiceRegistryComponent --> ComplaintControllerComponent : "Service discovery"
+ServiceRegistryComponent --> GuideControllerComponent : "Service discovery"
+ServiceRegistryComponent --> AuthControllerComponent : "Service discovery"
+
+@enduml
