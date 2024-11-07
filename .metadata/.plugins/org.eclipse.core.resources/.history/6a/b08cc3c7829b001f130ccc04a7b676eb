@@ -1,5 +1,0 @@
-package com.ust.wastebin_service.repository;
-
-public interface BinRepository {
-
-}

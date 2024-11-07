@@ -1,5 +1,0 @@
-package com.ust.data_ingestion_service.controller;
-
-public class DataIngestionController {
-
-}
