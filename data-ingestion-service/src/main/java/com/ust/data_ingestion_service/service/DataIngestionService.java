@@ -12,13 +12,9 @@ public class DataIngestionService {
 
     @Autowired
     private WastebinClient wastebinClient;
-
-    public void updateBinFillLevel(String binId, Double fillLevel) {
+    
+    public Bin updateBinFillLevel(String binId, Double fillLevel) {
         ResponseEntity<Bin> response = wastebinClient.updateFillLevel(binId, fillLevel);
-        if (response.getStatusCode().is2xxSuccessful()) {
-            System.out.println("Successfully updated fill level for binId: " + binId);
-        } else {
-            System.out.println("Failed to update fill level for binId: " + binId);
-        }
+        return response.getBody();
     }
 }

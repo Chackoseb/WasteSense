@@ -53,15 +53,17 @@ public class BinController {
         return binService.getBinsRequiringImmediateAction(threshold);
     }
     
-    @PatchMapping("/update-fill-level/{binId}")
-    public ResponseEntity<Bin> updatBinFillLevel(@PathVariable String binId, @RequestParam Double fillLevel) {
-        Bin bin = binService.getBinByBinId(binId);
-        if (bin != null) {
-            bin.setFillLevel(fillLevel);
-            Bin updatedBin = binService.updateBin(bin.getId(), bin);
-            return ResponseEntity.ok(updatedBin);
-        }
-        return ResponseEntity.notFound().build();
+    
+    @PutMapping("/update-fill-level/{binId}")
+    public ResponseEntity<Bin> updateBinFillLevel(@PathVariable String binId, @RequestParam Double fillLevel) {
+            Bin bin = binService.getBinByBinId(binId);
+            if (bin != null) {
+                bin.setFillLevel(fillLevel);
+                Bin updatedBin = binService.updateBin(bin.getId(), bin);
+                return ResponseEntity.ok(updatedBin);
+            }
+            return ResponseEntity.notFound().build();
+        
     }
 }
 

@@ -1,0 +1,14 @@
+package com.ust.data_ingestion_service.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import feign.Client;
+
+@Configuration
+public class FeignConfiguration {
+
+    @Bean
+    public Client feignClient() {
+        return new ApacheHttpClient();
+    }
+}

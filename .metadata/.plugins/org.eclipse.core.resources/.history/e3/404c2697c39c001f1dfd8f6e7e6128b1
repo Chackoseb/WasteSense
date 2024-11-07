@@ -1,0 +1,31 @@
+package com.ust.data_ingestion_service.client;
+
+import org.springframework.http.HttpStatus;
+
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.ust.data_ingestion_service.model.Bin;
+
+@FeignClient(name = "wastebin-service", fallback = com.ust.data_ingestion_service.client.WastebinClient.WastebinClientFallback.class)
+public interface WastebinClient {
+    
+    @PatchMapping("/bins/update-fill-level/{binId}")
+    ResponseEntity<Bin> updateFillLevel(@PathVariable("binId") String binId, @RequestParam("fillLevel") Double fillLevel);
+    
+    @Component
+    public class WastebinClientFallback implements WastebinClient {
+        @Override
+        public ResponseEntity<Bin> updateFillLevel(String binId, Double fillLevel) {
+            // Handle fallback logic here, e.g., returning a default response or an error message
+            return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(null);
+        }
+    }
+
+}
+

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ust.data_ingestion_service.model.Bin;
 import com.ust.data_ingestion_service.service.DataIngestionService;
 
 @RestController
@@ -16,11 +17,15 @@ public class DataIngestionController {
 
     @Autowired
     private DataIngestionService dataIngestionService;
-
+    
     @PostMapping("/update-bin/{binId}")
-    public ResponseEntity<String> updateBin(@PathVariable String binId, @RequestParam Double fillLevel) {
-        dataIngestionService.updateBinFillLevel(binId, fillLevel);
-        return ResponseEntity.ok("Fill level update initiated for binId: " + binId);
+    public ResponseEntity<Bin> updateBin(@PathVariable String binId, @RequestParam Double fillLevel) {
+        Bin updatedBin = dataIngestionService.updateBinFillLevel(binId, fillLevel);
+        if (updatedBin != null) {
+            return ResponseEntity.ok(updatedBin);
+        } else {
+            return ResponseEntity.status(500).body(null);
+        }
     }
 }
 
