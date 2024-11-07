@@ -1,0 +1,5 @@
+spring.application.name=wastebin-service
+
+server.port = 8026
+spring.data.mongodb.uri=mongodb://localhost:27017/waste_bin_db
+

@@ -1,0 +1,17 @@
+package com.ust.data_ingestion_service.dto;
+
+public class BinUpdateRequest {
+ private double fillLevel;
+ 
+ public BinUpdateRequest(double fillLevel) {
+     this.fillLevel = fillLevel;
+ }
+
+ public double getFillLevel() {
+     return fillLevel;
+ }
+
+ public void setFillLevel(double fillLevel) {
+     this.fillLevel = fillLevel;
+ }
+}

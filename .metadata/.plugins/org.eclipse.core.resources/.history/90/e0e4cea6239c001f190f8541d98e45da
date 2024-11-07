@@ -1,0 +1,5 @@
+package com.ust.data_ingestion_service.client;
+
+public class BinClient {
+
+}

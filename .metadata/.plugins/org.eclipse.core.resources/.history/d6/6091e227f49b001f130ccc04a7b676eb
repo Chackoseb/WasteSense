@@ -1,0 +1,6 @@
+spring.application.name=bin-service
+
+server.port = 8026
+spring.data.mongodb.uri=mongodb://localhost:27017/waste_bin_db
+
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/

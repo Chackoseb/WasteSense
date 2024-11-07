@@ -1,0 +1,5 @@
+spring.application.name=user-service
+server.port = 8020
+spring.data.mongodb.database=wastesense_db
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017

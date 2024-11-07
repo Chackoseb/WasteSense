@@ -1,0 +1,51 @@
+package com.ust.wastebin_service.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.ust.wastebin_service.model.Bin;
+import com.ust.wastebin_service.service.BinService;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/bins")
+public class BinController {
+    @Autowired
+    private final BinService binService;
+
+
+    public BinController(BinService binService) {
+        this.binService = binService;
+    }
+
+    @GetMapping
+    public List<Bin> getAllBins() {
+        return binService.getAllBins();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Bin> getBinById(@PathVariable Long id) {
+        Bin bin = binService.getBinById(id);
+        return bin != null ? ResponseEntity.ok(bin) : ResponseEntity.notFound().build();
+    }
+
+    @PostMapping
+    public Bin createBin(@RequestBody Bin bin) {
+        return binService.createBin(bin);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Bin> updateBin(@PathVariable Long id, @RequestBody Bin binDetails) {
+        Bin updatedBin = binService.updateBin(id, binDetails);
+        return updatedBin != null ? ResponseEntity.ok(updatedBin) : ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBin(@PathVariable Long id) {
+        binService.deleteBin(id);
+        return ResponseEntity.noContent().build();
+    }
+}
+

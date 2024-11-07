@@ -1,0 +1,5 @@
+package com.ust.wastebin_service.controller;
+
+public class BinController {
+
+}
