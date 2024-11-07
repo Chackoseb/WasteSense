@@ -1,4 +1,4 @@
-lklkpackage com.ust.wastebin_service.model;
+package com.ust.wastebin_service.model;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
