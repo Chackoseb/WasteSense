@@ -1,0 +1,21 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gateway-service
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: http://localhost:8025
+          predicates:
+            - Path=/users/**
+        - id: wastebin-service
+          uri: http://localhost:8026
+          predicates:
+            - Path=/bins/**
+        - id: data-ingestion-service
+          uri: http://localhost:8027
+          predicates:
+            - Path=data/**
