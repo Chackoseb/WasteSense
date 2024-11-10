@@ -1,0 +1,23 @@
+<div class="container">
+    <h2 class="text-center">Waste Bins</h2>
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+    <table class="table table-striped mt-4">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fill Level</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bin of bins">
+          <td>{{ bin.id }}</td>
+          <td>{{ bin.fillLevel }}</td>
+          <td>
+            <!-- Add buttons for editing, deleting, or viewing more details -->
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

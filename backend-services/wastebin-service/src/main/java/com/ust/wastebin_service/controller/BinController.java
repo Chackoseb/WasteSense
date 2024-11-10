@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/bins")
+@CrossOrigin
 public class BinController {
     @Autowired
     private final BinService binService;

@@ -1,0 +1,50 @@
+<!-- <div class="container">
+    <h2>Update Bin Fill Level</h2>
+    <form (ngSubmit)="updateBin()">
+      <div class="form-group">
+        <label for="binSelect">Select Bin:</label>
+        <select id="binSelect" [(ngModel)]="selectedBin" name="bin" required>
+          <option *ngFor="let bin of bins" [value]="bin.channelId">{{ bin.name }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="fillLevel">Fill Level (%):</label>
+        <input type="number" id="fillLevel" [(ngModel)]="fillLevel" name="fillLevel" required min="0" max="100">
+      </div>
+      <button type="submit">Update Fill Level</button>
+    </form>
+  </div> -->
+
+<div class="container">
+  <h2 class="title">Update Waste Bin Fill Level</h2>
+  <form (ngSubmit)="updateBin()" class="update-form">
+    <div class="form-group">
+      <label for="binSelect">Select Bin:</label>
+      <select
+        id="binSelect"
+        [(ngModel)]="selectedBin"
+        name="bin"
+        required
+        class="form-control"
+      >
+        <option *ngFor="let bin of bins" [value]="bin.channelId">
+          {{ bin.name }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="fillLevel">Fill Level (%):</label>
+      <input
+        type="number"
+        id="fillLevel"
+        [(ngModel)]="fillLevel"
+        name="fillLevel"
+        required
+        min="0"
+        max="100"
+        class="form-control"
+      />
+    </div>
+    <button type="submit" class="submit-button">Update Fill Level</button>
+  </form>
+</div>
