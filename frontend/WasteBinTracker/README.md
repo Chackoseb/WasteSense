@@ -1,4 +1,4 @@
-## Tracker to simulate waste bin values usign ThinkSpeak IoT platform.
+## Tracker to simulate waste bin values usign ThinkSpeak IoT platform
 
 # WasteBinTracker
 
