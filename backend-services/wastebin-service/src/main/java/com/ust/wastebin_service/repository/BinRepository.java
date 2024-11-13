@@ -6,4 +6,5 @@ import com.ust.wastebin_service.model.Bin;
 
 public interface BinRepository extends MongoRepository<Bin, String>{
 
+	Bin getBinByBinId(String binId);
 }

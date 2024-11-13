@@ -1,0 +1,12 @@
+.immediate-bin-container{
+    display: flex;
+    justify-content: space-between;
+}
+
+#active-bins-header {
+    width: 30%;
+}
+
+#immediate-bins-container { 
+    width: 60%;
+}

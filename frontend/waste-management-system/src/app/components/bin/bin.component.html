@@ -1,23 +1,66 @@
 <div class="container">
-    <h2 class="text-center">Waste Bins</h2>
-    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
-    <table class="table table-striped mt-4">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Fill Level</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let bin of bins">
-          <td>{{ bin.id }}</td>
-          <td>{{ bin.fillLevel }}</td>
-          <td>
-            <!-- Add buttons for editing, deleting, or viewing more details -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="immediate-bin-container">
+    <h2 class="text-left" id="active-bins-header">Active Bins</h2>
+    
+    <div class="container" id="immediate-bins-container">
+      <div id="route-container" class="route-container">
+        <div class="d-flex mb-3">
+          <label for="fillLevelThreshold" class="form-label me-2" style="width: 30%;">Filter by Threshold Value (%):</label>
+          <input
+            id="fillLevelThreshold"
+            type="number"
+            [(ngModel)]="fillLevelThreshold"
+            class="form-control me-3"
+            min="0"
+            max="100"
+            style="width: 15%;"
+          />
+          <button
+            class="btn btn-primary"
+            (click)="showImmediateBins()"
+            style="width: 15%; background-color: #626f47; border-color: #626f47;"
+          >
+            Show Bins
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-  
+
+  <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fill Level</th>
+        <th>Address</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Type</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let bin of bins">
+        <td>{{ bin.binId }}</td>
+        <td>{{ bin.fillLevel }}</td>
+        <td>
+          {{ bin.address.street }}, {{ bin.address.city }},
+          {{ bin.address.zipCode }}
+        </td>
+        <td>{{ bin.location.latitude }}</td>
+        <td>{{ bin.location.longitude }}</td>
+        <td>{{ bin.type }}</td>
+        <td>
+          <button class="btn" style="background-color: #626f47; color: white">
+            Update
+          </button>
+          <span style="margin-left: 6px"></span
+          ><button class="btn btn-danger" (click)="deleteBin(bin)">
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

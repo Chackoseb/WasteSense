@@ -8,6 +8,7 @@ import { Bin } from '../models/bin';
 })
 export class BinService {
   private baseUrl = 'http://localhost:8888/bins';
+  
 
   constructor(private http: HttpClient) { }
 

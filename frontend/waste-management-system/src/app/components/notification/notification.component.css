@@ -1,0 +1,28 @@
+.container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .notification-card {
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 5px;
+    color: black;
+  }
+  
+  .notification-card.weather {
+    background-color: #bde1ecb7;
+  }
+  
+  .notification-card.bin {
+    background-color: #fce5a1d3;
+  }
+  
+  .notification-card.complaint {
+    background-color: #ff9595c4;
+  }
+  
+  .notification-card.service {
+    background-color: #98f79bbd;
+  }
+  

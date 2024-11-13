@@ -1,0 +1,21 @@
+.navbar {
+    background-color: #798645;
+    justify-content: center;
+  }
+  
+  .navbar-brand {
+    color: #FEFAE0;
+    font-weight: bold;
+    font-size: 25px;
+    margin-left: 25px;
+  }
+  
+  .navbar-nav .nav-link {
+    color: #F2EED7;
+    font-weight: bold;
+    align-content: end;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #FEFAE0;
+  }

@@ -50,7 +50,7 @@ public class BinController {
     }
     
     @GetMapping("/immediate-action")
-    public List<Bin> getBinsRequiringImmediateAction(@RequestParam(defaultValue = "0.8") Double threshold) {
+    public List<Bin> getBinsRequiringImmediateAction(@RequestParam(defaultValue = "80") Double threshold) {
         return binService.getBinsRequiringImmediateAction(threshold);
     }
     

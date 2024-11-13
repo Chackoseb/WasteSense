@@ -1,11 +1,17 @@
 package com.ust.data_ingestion_service.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import com.ust.data_ingestion_service.client.WastebinClient;
 import com.ust.data_ingestion_service.model.Bin;
+import com.ust.data_ingestion_service.model.ThinkSpeakResponse;
 
 @Service
 public class DataIngestionService {
@@ -13,8 +19,57 @@ public class DataIngestionService {
     @Autowired
     private WastebinClient wastebinClient;
     
+    
+    
+    private final RestTemplate restTemplate = new RestTemplate();
+
+    // Map to store each bin's API URL and last known fill level
+    private final Map<String, String> binApiUrls = new HashMap<>();
+    private final Map<String, Double> lastFillLevels = new HashMap<>();
+
+    public DataIngestionService() {
+        // Initialize the map with bin IDs and their corresponding ThinkSpeak API URLs
+        binApiUrls.put("bin1", "https://api.thingspeak.com/channels/2737751/fields/1.json?api_key=PQMS975QRQ9UG6GO&results=1");
+        binApiUrls.put("bin2", "https://api.thingspeak.com/channels/2737899/fields/1.json?api_key=FSVMVYEUDO0GLGMX&results=1");
+        binApiUrls.put("bin3", "https://api.thingspeak.com/channels/2737903/fields/1.json?api_key=1E63ITIBTFY0KQBO&results=1");
+        binApiUrls.put("bin4", "https://api.thingspeak.com/channels/2737905/fields/1.json?api_key=K8VS31ISYOEI1NVF&results=1");
+    }
+
+    @Scheduled(fixedRate = 1000) // Poll every 1 second
+    public void pollThinkSpeakForBinData() {
+        for (Map.Entry<String, String> entry : binApiUrls.entrySet()) {
+            String binId = entry.getKey();
+            String apiUrl = entry.getValue();
+            
+            Double newFillLevel = fetchLatestFillLevelFromThinkSpeak(apiUrl);
+            
+            if (newFillLevel != null && hasFillLevelChanged(binId, newFillLevel)) {
+                updateBinFillLevel(binId, newFillLevel);
+                lastFillLevels.put(binId, newFillLevel); // Update the last known fill level
+            }
+        }
+    }
+
+    private Double fetchLatestFillLevelFromThinkSpeak(String apiUrl) {
+        try {
+            ThinkSpeakResponse response = restTemplate.getForObject(apiUrl, ThinkSpeakResponse.class);
+            if (response != null && !response.getFeeds().isEmpty()) {
+                return response.getFeeds().get(0).getField1(); // Assuming field1 represents fill level
+            }
+        } catch (Exception e) {
+            System.out.println("Failed to fetch data from ThinkSpeak: " + e.getMessage());
+        }
+        return null;
+    }
+
+    private boolean hasFillLevelChanged(String binId, Double newFillLevel) {
+        return !newFillLevel.equals(lastFillLevels.get(binId));
+    }
+
     public Bin updateBinFillLevel(String binId, Double fillLevel) {
         ResponseEntity<Bin> response = wastebinClient.updateFillLevel(binId, fillLevel);
         return response.getBody();
     }
+    
+    
 }

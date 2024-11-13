@@ -1,0 +1,24 @@
+
+.route-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+    width: 100%; 
+  }
+  
+  .custom-btn {
+    background-color: #626f47;
+    border-color: #626f47;
+  }
+  
+  .custom-btn:hover {
+    background-color: #798645; 
+    border-color: #798645;
+  }
+  
+  .form-control {
+    max-width: 200px; 
+    width: auto;
+  }
+  
