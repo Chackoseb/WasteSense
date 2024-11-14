@@ -34,7 +34,7 @@ export class NotificationComponent implements OnInit {
     if (this.selectedType === 'all') {
       this.notificationService.getAllNotifications().subscribe((data) => {
         this.notifications = data;
-        this.filteredNotifications = data;
+        this.filteredNotifications = data.reverse();
         this.updatePaginatedNotifications();
       });
     } else {
@@ -42,7 +42,7 @@ export class NotificationComponent implements OnInit {
         .getNotificationsByType(this.selectedType)
         .subscribe((data) => {
           this.notifications = data;
-          this.filteredNotifications = data;
+          this.filteredNotifications = data.reverse();
           this.updatePaginatedNotifications();
         });
     }

@@ -2,7 +2,7 @@ import { Address } from "./address"
 import { Location } from "./location"
 
 export interface Bin {
-    id: string
+    id?: string
     binId: string
     location: Location
     address: Address

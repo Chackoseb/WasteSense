@@ -9,6 +9,10 @@
     border-radius: 5px;
     color: black;
   }
+
+  .notification-card:hover{
+    transform: scale(1.05);
+  }
   
   .notification-card.weather {
     background-color: #bde1ecb7;

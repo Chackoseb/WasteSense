@@ -34,11 +34,12 @@ export class BinComponent implements OnInit {
 
   deleteBin(bin: Bin) {
     if (confirm(`Are you sure you want to delete bin ${bin.binId}?`)) {
-      this.binService.deleteBin(bin.id)
+      this.binService.deleteBin(bin.id!)
         .subscribe({
           next: () => { 
             this.bins = this.bins.filter(b => b.id !== bin.id);
             console.log(`Bin ${bin.binId} deleted successfully.`);
+            this.loadBins();
           },
           error: error => this.errorMessage = error.message 
         });

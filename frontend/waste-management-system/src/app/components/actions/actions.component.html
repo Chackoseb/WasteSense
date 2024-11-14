@@ -6,21 +6,21 @@
     style="display: flex; flex-direction: row; justify-content: space-between"
   >
     <button
-      class="btn btn-primary m-2"
+      class="btn m-2" id="btn-issue"
       style="width: 25%; height: 80px"
       (click)="selectAction('issue')"
     >
       Issue New Bins
     </button>
     <button
-      class="btn btn-warning m-2"
+      class="btn m-2" id="btn-modify"
       style="width: 25%"
       (click)="selectAction('modify')"
     >
       Modify Bins
     </button>
     <button
-      class="btn btn-danger m-2"
+      class="btn m-2" id="btn-delete"
       style="width: 25%"
       (click)="selectAction('delete')"
     >
@@ -169,14 +169,14 @@
       <thead>
         <tr>
           <th>Bin ID</th>
-          <th>Location</th>
+          <th>Address</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let bin of bins">
           <td>{{ bin.binId }}</td>
-          <td>{{ bin.location.latitude }}, {{ bin.location.longitude }}</td>
+          <td>{{ bin.address.street }}, {{ bin.address.city }}, {{ bin.address.zipCode }}</td>
           <td>
             <button (click)="onDeleteBin(bin.binId)" class="btn btn-danger">
               Delete
