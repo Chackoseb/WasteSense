@@ -1,0 +1,68 @@
+<div class="container mt-4">
+    <h2 class="mb-4">Search Bins</h2>
+  
+    <div class="filter-container mb-4">
+      <div class="radio-group mb-3">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="filterOptions" 
+                 id="idFilter" value="id" [(ngModel)]="selectedFilter" 
+                 (change)="onFilterChange()">
+          <label class="form-check-label" for="idFilter">Bin ID</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="filterOptions" 
+                 id="streetFilter" value="street" [(ngModel)]="selectedFilter"
+                 (change)="onFilterChange()">
+          <label class="form-check-label" for="streetFilter">Street</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="filterOptions" 
+                 id="zipFilter" value="zip" [(ngModel)]="selectedFilter"
+                 (change)="onFilterChange()">
+          <label class="form-check-label" for="zipFilter">ZIP Code</label>
+        </div>
+      </div>
+  
+      <div class="search-container d-flex align-items-center">
+        <select class="form-select me-3" [(ngModel)]="searchValue" 
+                (change)="searchBins()" style="width: 300px;">
+          <option value="">Select {{ selectedFilter | titlecase }}</option>
+          <option *ngFor="let option of availableOptions" [value]="option">
+            {{ option }}
+          </option>
+        </select>
+      </div>
+    </div>
+  
+    <div *ngIf="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+  
+    <table class="table table-striped mt-4" *ngIf="bins.length > 0">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Fill Level</th>
+          <th>Address</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+          <th>Type</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bin of bins">
+          <td>{{ bin.binId }}</td>
+          <td>{{ bin.fillLevel }}</td>
+          <td>
+            {{ bin.address.street }}, {{ bin.address.city }},
+            {{ bin.address.zipCode }}
+          </td>
+          <td>{{ bin.location.latitude }}</td>
+          <td>{{ bin.location.longitude }}</td>
+          <td>{{ bin.type }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div *ngIf="searchValue && bins.length === 0" class="alert alert-info">
+      No bins found for the selected criteria.
+    </div>
+  </div>

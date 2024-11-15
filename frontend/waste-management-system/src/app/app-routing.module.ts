@@ -6,6 +6,13 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ActionsComponent } from './components/actions/actions.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
+import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserServicesComponent } from './components/user-services/user-services.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserNotificationComponent } from './components/user-notification/user-notification.component';
+import { WasteCategorizerComponent } from './components/waste-categorizer/waste-categorizer.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { WasteEducationComponent } from './components/waste-education/waste-education.component';
 
 
 const routes: Routes = [
@@ -15,7 +22,14 @@ const routes: Routes = [
   {path: 'schedule', component: ScheduleComponent},
   {path: 'actions', component: ActionsComponent},
   {path: 'complaints', component: ComplaintsComponent},
-  {path: '', redirectTo: '/citymap', pathMatch: 'full'}
+  {path: 'user-home', component: UserHomeComponent},
+  {path: 'classify', component: WasteCategorizerComponent},
+  {path: 'search-bins', component: UserDashboardComponent},
+  {path: 'services', component: UserServicesComponent},
+  {path: 'user-notification', component: UserNotificationComponent},
+  {path: 'user-profile', component: UserProfileComponent},
+  {path: 'waste-education', component: WasteEducationComponent},
+  {path: '', redirectTo: '/user-home', pathMatch: 'full'}
 ];
 
 @NgModule({

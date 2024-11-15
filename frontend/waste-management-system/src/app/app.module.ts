@@ -12,7 +12,16 @@ import { NotificationComponent } from './components/notification/notification.co
 import { ScheduleComponent } from './components/schedule/schedule.component';
 import { ActionsComponent } from './components/actions/actions.component';
 import { ComplaintsComponent } from './components/complaints/complaints.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserHomeComponent } from './components/user-home/user-home.component';
+import { UserServicesComponent } from './components/user-services/user-services.component';
+import { UserNotificationComponent } from './components/user-notification/user-notification.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { UserNavbarComponent } from './components/user-navbar/user-navbar.component';
+import { WasteCategorizerComponent } from './components/waste-categorizer/waste-categorizer.component';
+import { CommonModule } from '@angular/common';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
+import { WasteEducationComponent } from './components/waste-education/waste-education.component';
 
 
 @NgModule({
@@ -25,13 +34,23 @@ import { FormsModule } from '@angular/forms';
     NotificationComponent,
     ScheduleComponent,
     ActionsComponent,
-    ComplaintsComponent
+    ComplaintsComponent,
+    UserHomeComponent,
+    UserServicesComponent,
+    UserNotificationComponent,
+    UserProfileComponent,
+    UserNavbarComponent,
+    WasteCategorizerComponent,
+    UserDashboardComponent,
+    WasteEducationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

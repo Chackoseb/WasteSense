@@ -1,5 +1,6 @@
 <div class="main-content">
-  <app-navbar></app-navbar>
+  <app-navbar *ngIf="role === 'admin'"></app-navbar>
+  <app-user-navbar *ngIf="role === 'user'"></app-user-navbar>
   <div class="container my-5 content">
     <router-outlet></router-outlet>
   </div>

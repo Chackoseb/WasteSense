@@ -1,0 +1,204 @@
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Community Waste Management Guide</h1>
+  
+    <ul class="nav nav-tabs mb-4">
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeSection === 'overview'"
+           (click)="setActiveSection('overview')">Overview</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeSection === 'categories'"
+           (click)="setActiveSection('categories')">Waste Categories</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeSection === 'tips'"
+           (click)="setActiveSection('tips')">Best Practices</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" [class.active]="activeSection === 'faq'"
+           (click)="setActiveSection('faq')">FAQs</a>
+      </li>
+    </ul>
+  
+    <!-- Overview Section -->
+    <div *ngIf="activeSection === 'overview'" class="section-content">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Understanding Waste Management</h2>
+          <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="why-it-matters">
+                    <strong>Why It Matters</strong><br>
+                    Recycling and waste reduction are crucial for a sustainable future. By embracing these practices, we can protect our environment, conserve resources, and improve our communities.
+                    <br><br>
+                    <strong>Key Benefits:</strong>
+                    <ul>
+                      <li>Reduced carbon footprint</li>
+                      <li>Preserved natural resources</li>
+                      <li>Cleaner air and water</li>
+                      <li>Energy savings</li>
+                      <li>Enhanced community aesthetics</li>
+                      <li>Improved public health</li>
+                      <li>Boosted property values</li>
+                      <li>Lower disposal costs</li>
+                      <li>Economic growth</li>
+                    </ul>
+                  </div>
+                  
+            </div>
+            <div class="col-md-6">
+              <h3>The 3R Principle</h3>
+              <div class="principles">
+                <div class="principle">
+                  <h4>Reduce</h4>
+                  <p>Minimize waste generation through conscious consumption</p>
+                </div>
+                <div class="principle">
+                  <h4>Reuse</h4>
+                  <p>Find new purposes for items before disposal</p>
+                </div>
+                <div class="principle">
+                  <h4>Recycle</h4>
+                  <p>Convert waste into reusable materials</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Categories Section -->
+    <div *ngIf="activeSection === 'categories'" class="section-content">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="categories-list">
+            <div *ngFor="let category of wasteCategories" 
+                 class="category-card" 
+                 [style.border-left]="'4px solid ' + category.binColor"
+                 (click)="selectCategory(category)">
+              <h3>{{ category.name }}</h3>
+              <p>Click to learn more</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8">
+          <div *ngIf="selectedCategory" class="category-detail card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h3>{{ selectedCategory.name }}</h3>
+              <button class="btn btn-close" (click)="clearSelectedCategory()"></button>
+            </div>
+            <div class="card-body">
+              <h4>Common Items</h4>
+              <ul class="items-list">
+                <li *ngFor="let item of selectedCategory.items">{{ item }}</li>
+              </ul>
+              
+              <div class="row mt-4">
+                <div class="col-md-6">
+                  <h4 class="text-success">Do's</h4>
+                  <ul class="do-list">
+                    <li *ngFor="let do of selectedCategory.doList">{{ do }}</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h4 class="text-danger">Don'ts</h4>
+                  <ul class="dont-list">
+                    <li *ngFor="let dont of selectedCategory.dontList">{{ dont }}</li>
+                  </ul>
+                </div>
+              </div>
+  
+              <div class="mt-4">
+                <h4>Tips</h4>
+                <ul class="tips-list">
+                  <li *ngFor="let tip of selectedCategory.tips">{{ tip }}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="!selectedCategory" class="select-prompt">
+            <p>Select a category to view details</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Best Practices Section -->
+    <div *ngIf="activeSection === 'tips'" class="section-content">
+      <div class="card">
+        <div class="card-body">
+          <h2>Waste Management Best Practices</h2>
+          
+          <div class="best-practices mt-4">
+            <div class="practice-card">
+              <h3>Daily Habits</h3>
+              <ul>
+                <li>Use reusable shopping bags</li>
+                <li>Choose products with minimal packaging</li>
+                <li>Carry a reusable water bottle</li>
+                <li>Plan meals to reduce food waste</li>
+              </ul>
+            </div>
+  
+            <div class="practice-card">
+              <h3>Home Organization</h3>
+              <ul>
+                <li>Set up separate bins for different waste types</li>
+                <li>Create a composting system</li>
+                <li>Maintain a recycling corner</li>
+                <li>Label bins clearly</li>
+              </ul>
+            </div>
+  
+            <div class="practice-card">
+              <h3>Community Involvement</h3>
+              <ul>
+                <li>Participate in community clean-up events</li>
+                <li>Share resources with neighbors</li>
+                <li>Report illegal dumping</li>
+                <li>Support local recycling initiatives</li>
+              </ul>
+            </div>
+  
+            <div class="practice-card">
+              <h3>Smart Shopping</h3>
+              <ul>
+                <li>Buy in bulk to reduce packaging</li>
+                <li>Choose products with recycled content</li>
+                <li>Support eco-friendly brands</li>
+                <li>Avoid single-use items</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- FAQ Section -->
+    <div *ngIf="activeSection === 'faq'" class="section-content">
+      <div class="card">
+        <div class="card-body">
+          <h2>Frequently Asked Questions</h2>
+          
+          <div class="accordion mt-4" id="faqAccordion">
+            <div class="accordion-item" *ngFor="let faq of faqs; let i = index">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" 
+                        [attr.data-bs-toggle]="'collapse'"
+                        [attr.data-bs-target]="'#faq' + i">
+                  {{ faq.question }}
+                </button>
+              </h2>
+              <div [id]="'faq' + i" class="accordion-collapse collapse" 
+                   data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                  {{ faq.answer }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,1 +1,76 @@
-<p>schedule works!</p>
+<div class="container mt-4">
+    <h2 class="text-left">Schedule Collection</h2>
+    
+    <div
+    class="card p-3 mb-4"
+    style="display: flex; flex-direction: row; justify-content: center; border: 0;"
+  >
+    <button
+      class="btn m-2" id="btn-issue"
+      style="width: 25%; height: 80px; margin: 100px;"
+      (click)="showNewScheduleForm()"
+      >
+      Create New Schedule
+    </button>
+    <span style="width: 15%;"></span>
+    <button
+      class="btn m-2" id="btn-modify"
+      style="width: 25%;"
+      (click)="showHistory()"
+    >
+        Schedule History
+    </button>
+</div>
+  
+    <div *ngIf="isNewScheduleFormVisible">
+      <form [formGroup]="scheduleForm" (ngSubmit)="createSchedule()">
+        
+        <div class="mb-3">
+          <label for="scheduleId" class="form-label">Schedule Name</label>
+          <input type="text" [(ngModel)]="schedule.scheduleId" class="form-control" id="scheduleId" formControlName="scheduleId" placeholder="Enter schedule name">
+        </div>
+  
+        <div class="mb-3">
+          <label for="scheduledDate" class="form-label">Scheduled Date</label>
+          <input type="datetime-local" [(ngModel)]="schedule.scheduledDate" class="form-control" id="scheduledDate" formControlName="scheduledDate">
+        </div>
+  
+        <div class="mb-3">
+          <label class="form-label">Select Bins for Schedule</label>
+          <div *ngFor="let bin of bins">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" [id]="bin.binId" (change)="onBinSelect(bin, $event)">
+              <label class="form-check-label" for="{{ bin.binId }}">
+                {{ bin.binId }} - Fill Level: {{ bin.fillLevel }}%
+              </label>
+            </div>
+          </div>
+        </div>
+  
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success" [disabled]="scheduleForm.invalid">Create Schedule</button>
+      </form>
+    </div>
+
+    <div *ngIf="isHistoryVisible">
+        <!-- create a table with titles ScheduleId, Schedule Date and Time, Bins  -->
+         <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ScheduleId</th>
+                    <th scope="col">Scheduled Date and Time</th>
+                    <th scope="col">Bins Included</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let schedule of schedules.reverse()">
+                    <td>{{ schedule.scheduleId }}</td>
+                    <td>{{ schedule.scheduledDate }}</td>
+                    <td>{{ schedule.bins }}</td>
+                </tr>
+            </tbody>
+         </table>
+
+    </div>
+  </div>
+  

@@ -1,0 +1,22 @@
+.filter-container {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .radio-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-check-inline {
+    margin-right: 2rem;
+  }
+  
+  .search-container {
+    max-width: 600px;
+  }
+  
+  .table th {
+    background-color: #626f47;
+    color: white;
+  }
