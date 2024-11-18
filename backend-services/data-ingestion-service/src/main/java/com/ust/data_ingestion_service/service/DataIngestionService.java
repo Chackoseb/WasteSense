@@ -5,6 +5,8 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -19,16 +21,15 @@ public class DataIngestionService {
     @Autowired
     private WastebinClient wastebinClient;
     
-    
+    @Autowired
+    private JavaMailSender mailSender;
     
     private final RestTemplate restTemplate = new RestTemplate();
 
-    // Map to store each bin's API URL and last known fill level
     private final Map<String, String> binApiUrls = new HashMap<>();
     private final Map<String, Double> lastFillLevels = new HashMap<>();
 
     public DataIngestionService() {
-        // Initialize the map with bin IDs and their corresponding ThinkSpeak API URLs
         binApiUrls.put("bin1", "https://api.thingspeak.com/channels/2737751/fields/1.json?api_key=PQMS975QRQ9UG6GO&results=1");
         binApiUrls.put("bin2", "https://api.thingspeak.com/channels/2737899/fields/1.json?api_key=FSVMVYEUDO0GLGMX&results=1");
         binApiUrls.put("bin3", "https://api.thingspeak.com/channels/2737903/fields/1.json?api_key=1E63ITIBTFY0KQBO&results=1");
@@ -45,7 +46,11 @@ public class DataIngestionService {
             
             if (newFillLevel != null && hasFillLevelChanged(binId, newFillLevel)) {
                 updateBinFillLevel(binId, newFillLevel);
-                lastFillLevels.put(binId, newFillLevel); // Update the last known fill level
+                lastFillLevels.put(binId, newFillLevel);
+                
+                if (newFillLevel > 80) {
+                    sendAlertEmail(binId, newFillLevel);
+                }
             }
         }
     }
@@ -69,6 +74,20 @@ public class DataIngestionService {
     public Bin updateBinFillLevel(String binId, Double fillLevel) {
         ResponseEntity<Bin> response = wastebinClient.updateFillLevel(binId, fillLevel);
         return response.getBody();
+    }
+    
+    private void sendAlertEmail(String binId, Double fillLevel) {
+        try {
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setTo("chackochansebastian29@gmail.com");
+            message.setSubject("Bin Alert: High Fill Level Detected");
+            message.setText("Alert: The fill level of bin " + binId + " has reached " + fillLevel + "%. Please take necessary action.");
+
+            mailSender.send(message);
+            System.out.println("Alert email sent successfully for bin " + binId);
+        } catch (Exception e) {
+            System.out.println("Failed to send alert email: " + e.getMessage());
+        }
     }
     
     
