@@ -8,10 +8,10 @@ import { ThingSpeakService } from '../thing-speak.service';
 })
 export class BinUpdateComponent {
   bins = [
-    { name: 'Bin1', channelId: '2737751', writeApiKey: '1CS7ZPFJGH94K2MO' },
-    { name: 'Bin2', channelId: '2737899', writeApiKey: '50WUXQDY0NF3XNH4' },
-    { name: 'Bin3', channelId: '2737903', writeApiKey: 'B9R0LJT1M27FXOMP' },
-    { name: 'Bin4', channelId: '2737905', writeApiKey: 'YOC7YE5A2LXA8WTM' }
+    { name: 'tvm-cntl-station-RW', channelId: '2737751', writeApiKey: '1CS7ZPFJGH94K2MO' },
+    { name: 'greenfield-stadium-RW', channelId: '2737899', writeApiKey: '50WUXQDY0NF3XNH4' },
+    { name: 'cet-RW', channelId: '2737903', writeApiKey: 'B9R0LJT1M27FXOMP' },
+    { name: 'veli-lake-village-RW', channelId: '2737905', writeApiKey: 'YOC7YE5A2LXA8WTM' }
     
   ];
 
