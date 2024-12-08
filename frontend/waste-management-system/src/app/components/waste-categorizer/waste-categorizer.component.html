@@ -1,52 +1,28 @@
-<div class="container mt-5">
-    <h1 class="text-center">Waste Classification</h1>
-  
-    <div class="input-group mt-4">
-      <input
-        type="text"
-        class="form-control"
-        placeholder="Search for waste item..."
-        aria-label="Search"
-        [formControl]="searchControl"
-        (focus)="filteredItems = wasteItems"
-      />
-      <span class="input-group-text">
-        <i class="bi bi-search"></i>
-      </span>
-    </div>
-  
-    <div *ngIf="filteredItems.length > 0" class="dropdown-menu show mt-4">
-      <button
-        *ngFor="let item of filteredItems"
-        class="dropdown-item"
-        (click)="selectItem(item)"
-      >
-        {{ item.name }}
-      </button>
-    </div>
-  
-    <div *ngIf="selectedItemCategory" class="mt-4">
-      <h5>
-        Category:
-        <span class="badge" [ngClass]="selectedItemCategory.colorClass">
-          {{ selectedItemCategory.name }}
-        </span>
-      </h5>
-    </div>
-  
-    <!-- Instructions Section -->
-    <div *ngIf="selectedInstructions.length > 0" class="mt-3">
-      <h5>Disposal Instructions:</h5>
-      <ul class="list-group">
-        <li
-          *ngFor="let instruction of selectedInstructions"
-          class="list-group-item"
-        >
-          {{ instruction }}
-        </li>
-      </ul>
+<div class="container mt-4">
+  <h2 class="text-center text-success mb-3">AI Waste Categorizer</h2>
+
+  <div class="info-section text-center mb-4">
+    <p>
+      Proper waste categorization is essential for a sustainable future. It helps in reducing landfill waste, recycling materials effectively, and protecting the environment from harmful toxins.
+    </p>
+    <p>
+      Use the right bins for disposal: Recyclable, Organic, General, E-waste, and others. Learn more about waste management from resources like 
+      <a href="https://www.niti.gov.in/sites/default/files/2021-12/PromotingBehaviourChange-forStrengtheningWasteSegregation-at-Source-PolicyGuidelines.pdf" target="_blank">NITI Aayog</a> and 
+      <a href="https://iucn.org/sites/default/files/2022-10/waste-optimisation-inspirational-guide_final.pdf" target="_blank">IUCN</a>.
+    </p>
+    <img src="../../../assets/waste-segregation.jpeg" alt="Waste Segregation Bins" class="img-fluid rounded shadow" style="max-width: 50%;">
+  </div>
+
+  <div class="input-section mb-4">
+    <label for="waste" class="form-label">Enter the name of a waste item to categorize:</label>
+    <textarea id="waste" class="form-control" rows="2" [(ngModel)]="waste" placeholder="E.g., Plastic bottle, Old mobile phone"></textarea>
+    <button class="btn btn-success mt-3" style="text-align: center;" (click)="getCategoryAndInstructions()">Get Waste Category</button>
+  </div>
+
+  <div class="response-section mt-4">
+    <h4 *ngIf="response" class="text-center">Category and Disposal Instructions:</h4>
+    <div *ngIf="response" class="response-box p-3 rounded bg-light border">
+      <pre>{{ response }}</pre>
     </div>
   </div>
-  
-
-
+</div>

@@ -1,27 +1,24 @@
 .container {
-    max-width: 600px;
-  }
-  
-  .dropdown-menu {
-    width: 100%;
-    max-height: 200px;
-    max-width: 575px;
-    overflow-y: auto;
-  }
-  
+  max-width: 800px;
+  margin: 0 auto;
+}
 
-  h5 {
-    font-weight: bold;
-  }
-  
-  .list-group-item {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    background-color: #f8f9fa;
-    border-left: 4px solid #007bff;
-  }
-  
+.info-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
 
+.img-fluid {
+  margin-top: 20px;
+}
 
+textarea {
+  resize: none;
+}
 
+.response-box {
+  font-family: "Courier New", Courier, monospace;
+  white-space: pre-wrap;
+  font-size: 1rem;
+}
 
