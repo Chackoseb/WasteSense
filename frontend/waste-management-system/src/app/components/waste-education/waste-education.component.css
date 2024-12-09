@@ -1,7 +1,7 @@
 /* waste-education.component.css */
 .nav-tabs .nav-link {
     cursor: pointer;
-    color: #626f47;
+    color: #217c36;
     border: none;
     padding: 10px 20px;
     transition: all 0.3s ease;
@@ -13,7 +13,7 @@
   
   .nav-tabs .nav-link.active {
     color: #fff;
-    background-color: #626f47;
+    background-color: #217c36;
     border: none;
   }
   

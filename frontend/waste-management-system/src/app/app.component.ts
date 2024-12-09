@@ -8,5 +8,5 @@ import { FooterComponent } from "./components/footer/footer.component";
 })
 export class AppComponent {
   title = 'waste-management-system';
-  role: string = 'user';
+  role: string = 'admin';
 }

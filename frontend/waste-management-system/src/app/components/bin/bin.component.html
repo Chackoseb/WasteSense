@@ -1,4 +1,4 @@
-<div class="container mt-4">
+<div class="container whole-content mt-4">
   <div class="immediate-bin-container">
     <h2 class="text-left" id="active-bins-header">Active Bins</h2>
     
@@ -16,9 +16,9 @@
             style="width: 15%;"
           />
           <button
-            class="btn btn-primary"
+            class="btn btn-success"
             (click)="showImmediateBins()"
-            style="width: 15%; background-color: #626f47; border-color: #626f47;"
+            style="width: 15%;"
           >
             Show Bins
           </button>
@@ -37,7 +37,6 @@
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Type</th>
-        <!-- <th>Quick Actions</th> -->
       </tr>
     </thead>
     <tbody>
@@ -51,15 +50,6 @@
         <td>{{ bin.location.latitude }}</td>
         <td>{{ bin.location.longitude }}</td>
         <td>{{ bin.type }}</td>
-        <!-- <td>
-          <button class="btn" style="background-color: #626f47; color: white">
-            Update
-          </button>
-          <span style="margin-left: 6px"></span
-          ><button class="btn btn-danger" (click)="deleteBin(bin)">
-            Delete
-          </button> 
-        </td> -->
       </tr>
     </tbody>
   </table>

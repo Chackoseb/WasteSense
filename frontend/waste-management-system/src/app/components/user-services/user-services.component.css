@@ -14,3 +14,6 @@
     background: #f9f9f9;
   }
   
+  .whole-content{
+    min-height: 70vh;
+}

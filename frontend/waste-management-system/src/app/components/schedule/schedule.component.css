@@ -22,3 +22,6 @@
     background-color: rgba(255, 0, 0, 0.815);
 }
 
+.container{
+    min-height: 70vh;
+}

@@ -30,3 +30,6 @@
     background-color: #98f79bbd;
   }
   
+  .whole-content{
+    min-height: 70vh;
+}

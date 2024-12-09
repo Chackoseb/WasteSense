@@ -1,20 +1,20 @@
 <div class="container mt-4">
-    <h1 class="text-center mb-4">Community Waste Management Guide</h1>
+    <h2 class="text-center mb-4 text-success">Community Waste Management Guide</h2>
   
     <ul class="nav nav-tabs mb-4">
       <li class="nav-item">
-        <a class="nav-link" [class.active]="activeSection === 'overview'"
+        <a class="nav-link fw-bold" [class.active]="activeSection === 'overview'"
            (click)="setActiveSection('overview')">Overview</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item fw-bold">
         <a class="nav-link" [class.active]="activeSection === 'categories'"
            (click)="setActiveSection('categories')">Waste Categories</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item fw-bold">
         <a class="nav-link" [class.active]="activeSection === 'tips'"
            (click)="setActiveSection('tips')">Best Practices</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item fw-bold">
         <a class="nav-link" [class.active]="activeSection === 'faq'"
            (click)="setActiveSection('faq')">FAQs</a>
       </li>
@@ -24,7 +24,7 @@
     <div *ngIf="activeSection === 'overview'" class="section-content">
       <div class="card">
         <div class="card-body">
-          <h2 class="card-title">Understanding Waste Management</h2>
+          <h3 class="card-title">Understanding Waste Management</h3>
           <div class="row mt-4">
             <div class="col-md-6">
                 <div class="why-it-matters">
@@ -47,7 +47,7 @@
                   
             </div>
             <div class="col-md-6">
-              <h3>The 3R Principle</h3>
+              <h4>The 3R Principle</h4>
               <div class="principles">
                 <div class="principle">
                   <h4>Reduce</h4>
