@@ -135,15 +135,13 @@ export class ActionsComponent implements OnInit {
       return;
     }
 
-    // Show confirmation dialog
     if (confirm(`Are you sure you want to delete bin ${this.selectedBinForDelete.binId}?`)) {
-      // Use the MongoDB id for deletion
       this.binService.deleteBin(this.selectedBinForDelete.id).subscribe({
         next: () => {
           console.log('Bin deleted successfully');
-          this.loadBins(); // Refresh the list
+          this.loadBins(); 
           alert('Bin deleted successfully!');
-          this.selectedBinForDelete = null; // Reset selection
+          this.selectedBinForDelete = null; 
         },
         error: (error) => {
           console.error('Error deleting bin:', error);

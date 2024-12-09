@@ -11,10 +11,11 @@
   }
 
   .notification-card:hover{
-    transform: scale(1.05);
+    transform: scale(1.005);
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
   }
   
-  .notification-card.weather {
+  .notification-card.new-bin-request {
     background-color: #bde1ecb7;
   }
   

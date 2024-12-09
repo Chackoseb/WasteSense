@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { NotificationService } from 'src/app/services/notification.service';
 
 interface Notification {
-  id: string;
+  // id: string;
   recipientId: string;
   message: string;
   type: string;
+  details: string;
 }
 
 @Component({
@@ -16,11 +17,13 @@ interface Notification {
 export class NotificationComponent implements OnInit {
   notifications: Notification[] = [];
   filteredNotifications: Notification[] = [];
+  showNotification: number = 0;
 
   // Pagination variables
   currentPage: number = 1;
   itemsPerPage: number = 5;
   paginatedNotifications: Notification[] = [];
+  filteredNotificationsForAdmin: Notification[] = [];
 
   selectedType: string = 'all';
 
@@ -70,4 +73,15 @@ export class NotificationComponent implements OnInit {
     this.currentPage = page;
     this.updatePaginatedNotifications();
   }
+
+  selectedNotificationIndex: number | null = null;
+
+  toggleNotificationDetails(index: number): void {
+    this.selectedNotificationIndex = this.selectedNotificationIndex === index ? null : index;
+  }
+
+  filteredNotificationsforAdmin = this.paginatedNotifications.filter(
+    notification => notification.recipientId === 'admin'
+  );
+  
 }

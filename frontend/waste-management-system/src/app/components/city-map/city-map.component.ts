@@ -61,12 +61,10 @@ export class CityMapComponent implements OnInit {
   }
 
   public showRoute(): void {
-    // Remove the existing route if there is one
     if (this.routeControl) {
       this.map.removeControl(this.routeControl);
     }
 
-    // Filter bins based on the fill level threshold
     const filteredBins = this.bins
       .filter(bin => bin.fillLevel >= this.fillLevelThreshold)
       .map(bin => L.latLng(bin.location.latitude, bin.location.longitude));
@@ -80,9 +78,8 @@ export class CityMapComponent implements OnInit {
         lineOptions: {
           styles: [{ color: 'blue', opacity: 0.7, weight: 5 }]
         },
-        createMarker: () => null  // Do not add markers for each waypoint
+        createMarker: () => null  
       }).addTo(this.map);
-      // this.routeControl.hide();
     } else {
       alert('No bins meet the fill level threshold.');
     }
@@ -90,7 +87,7 @@ export class CityMapComponent implements OnInit {
 
 
   private getIcon(fillLevel: number): L.Icon {
-    let iconUrl = 'assets/default-bin.png';   //default bin-icon
+    let iconUrl = 'assets/default-bin.png';   
 
     if (fillLevel >= 0 && fillLevel <= 40) {
       iconUrl = 'assets/green-icon.png';

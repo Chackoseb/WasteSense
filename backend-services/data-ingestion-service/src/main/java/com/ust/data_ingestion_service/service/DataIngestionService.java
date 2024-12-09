@@ -11,8 +11,10 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.ust.data_ingestion_service.client.NotificationClient;
 import com.ust.data_ingestion_service.client.WastebinClient;
 import com.ust.data_ingestion_service.model.Bin;
+import com.ust.data_ingestion_service.model.NotificationDTO;
 import com.ust.data_ingestion_service.model.ThinkSpeakResponse;
 
 import org.apache.logging.log4j.LogManager;
@@ -25,6 +27,9 @@ public class DataIngestionService {
 	
     @Autowired
     private WastebinClient wastebinClient;
+    
+    @Autowired
+    private NotificationClient notificationClient;
     
     @Autowired
     private JavaMailSender mailSender;
@@ -53,9 +58,11 @@ public class DataIngestionService {
                 updateBinFillLevel(binId, newFillLevel);
                 lastFillLevels.put(binId, newFillLevel);
                 
-                if (newFillLevel > 80) {
+                if (newFillLevel > 90) {
                     sendAlertEmail(binId, newFillLevel);
+                    notifyAdmin(binId, newFillLevel);
                 }
+               
             }
         }
     }
@@ -95,6 +102,18 @@ public class DataIngestionService {
 //            System.out.println("Failed to send alert email: " + e.getMessage());
         	logger.error("Failed to send alert email: {}", e.getMessage(), e);
         }
+    }
+    
+    private void notifyAdmin(String binId,Double newFillLevel) {
+        String type;
+        String message;
+
+        type = "bin";
+        message = "The fill level of bin: " + binId + " has reached " + newFillLevel + " percent. Take necessary action.";
+        
+
+        NotificationDTO notification = new NotificationDTO("admin", message, type);
+        notificationClient.createNotification(notification);
     }
     
     

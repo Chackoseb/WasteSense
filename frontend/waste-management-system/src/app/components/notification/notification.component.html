@@ -9,7 +9,7 @@
       (change)="onFilterChange($event)"
     >
       <option value="all">All</option>
-      <option value="weather">Weather</option>
+      <option value="new-bin-request">New Bin Request</option>
       <option value="bin">Bin</option>
       <option value="complaint">Complaint</option>
       <option value="service">Service</option>
@@ -17,13 +17,18 @@
   </div>
 
   <div
-    *ngFor="let notification of paginatedNotifications"
-    class="notification-card mb-3"
-    [ngClass]="notification.type"
-  >
-    <p><strong>Type:</strong> {{ notification.type | titlecase }}</p>
-    <p><strong>Message:</strong> {{ notification.message }}</p>
+  *ngFor="let notification of paginatedNotifications; let i = index"
+  class="notification-card mb-3"
+  [ngClass]="notification.type"
+  (click)="toggleNotificationDetails(i)"
+>
+  <p><strong>Type:</strong> {{ notification.type | titlecase }}</p>
+  <p><strong>Message:</strong> {{ notification.message }}</p>
+  <div *ngIf="selectedNotificationIndex === i">
+    <pre><strong>Details:</strong> {{ notification.details }}</pre>
   </div>
+</div>
+
 
   <!-- Pagination Controls -->
   <nav aria-label="Notification pagination">

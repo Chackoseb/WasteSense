@@ -3,10 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 interface Notification {
-  id: string;
+  // id: string;
   recipientId: string;
   message: string;
   type: string;
+  details: string;
 }
 
 @Injectable({
