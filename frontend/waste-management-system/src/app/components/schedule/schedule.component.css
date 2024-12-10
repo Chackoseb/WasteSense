@@ -1,17 +1,17 @@
 #btn-issue{
-    background-color: rgba(0, 132, 255, 0.548);
+    background-color: rgba(100, 223, 116, 0.637);
 }
 
 #btn-issue:hover, #btn-issue:active {
-    background-color: rgb(0, 132, 255);
+    background-color: rgba(9, 224, 38, 0.781);
 }
 
 #btn-modify{
-    background-color: rgba(255, 255, 0, 0.582);
+    background-color: rgba(100, 223, 116, 0.651);
 }
 
 #btn-modify:hover{
-    background-color: rgba(255, 255, 0, 0.877);
+    background-color: rgba(9, 224, 38, 0.781);
 }
 
 #btn-delete{
