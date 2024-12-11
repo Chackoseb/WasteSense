@@ -1,7 +1,9 @@
 package com.ust.data_ingestion_service.service;
 
 import java.util.HashMap;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -107,12 +109,15 @@ public class DataIngestionService {
     private void notifyAdmin(String binId,Double newFillLevel) {
         String type;
         String message;
+        String details;
+        LocalDateTime currentTime = LocalDateTime.now();
+        String formattedTime = currentTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")); 
 
         type = "bin";
         message = "The fill level of bin: " + binId + " has reached " + newFillLevel + " percent. Take necessary action.";
-        
+        details = "Time: " + formattedTime + "\n\t BinId: " + binId + "\n\t Fill Level: "+ newFillLevel;
 
-        NotificationDTO notification = new NotificationDTO("admin", message, type);
+        NotificationDTO notification = new NotificationDTO("admin", message, type, details);
         notificationClient.createNotification(notification);
     }
     

@@ -1,4 +1,4 @@
-package com.ust.data_ingestion_service.model;
+package com.ust.schedule_service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

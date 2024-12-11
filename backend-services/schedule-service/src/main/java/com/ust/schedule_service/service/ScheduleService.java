@@ -3,10 +3,14 @@ package com.ust.schedule_service.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ust.schedule_service.client.NotificationClient;
 import com.ust.schedule_service.exception.ScheduleNotFoundException;
+import com.ust.schedule_service.model.NotificationDTO;
 import com.ust.schedule_service.model.Schedule;
 import com.ust.schedule_service.repository.ScheduleRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Service
@@ -14,6 +18,9 @@ public class ScheduleService {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+    
+    @Autowired
+    private NotificationClient notificationClient;
 
     public List<Schedule> getAllSchedules() {
         return scheduleRepository.findAll();
@@ -24,7 +31,9 @@ public class ScheduleService {
     }
 
     public Schedule createSchedule(Schedule schedule) {
-        return scheduleRepository.save(schedule);
+        Schedule savedSchedule = scheduleRepository.save(schedule);
+        notifyUser(schedule);
+        return savedSchedule;
     }
 
     public Schedule updateSchedule(String id, Schedule updatedSchedule) {
@@ -38,6 +47,19 @@ public class ScheduleService {
 
     public void deleteSchedule(String id) {
         scheduleRepository.deleteById(id);
+    }
+    
+    public void notifyUser(Schedule schedule) {
+    	String type;
+        String message;
+        String details;
+
+        type = "schedule";
+        message = "A bin collection is scheduled on " + schedule.getScheduledDate();
+        details = "Bins to be collected: " + schedule.getBins();
+
+        NotificationDTO notification = new NotificationDTO("user", message, type, details);
+        notificationClient.createNotification(notification);
     }
 }
 
