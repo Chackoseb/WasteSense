@@ -86,3 +86,49 @@ WBS --> DIS: Confirmation of update
 
 @enduml
 
+
+
+whole flow:
+@startuml
+actor "IoT Device" as IoT
+actor "Admin" as Admin
+actor "User" as User
+
+participant "ThinkSpeak IoT Platform" as IoTCore
+participant "Data Ingestion Service" as DIS
+participant "Waste Bin Service" as WBS
+participant "Notification Service" as NS
+participant "Request Service" as RS
+
+IoT -> IoTCore: Collect real-time data (bin status)
+IoTCore -> IoTCore: Process and store data
+IoTCore -> DIS: Send data to Data Ingestion Service
+
+DIS -> WBS: Update waste bin status (with data)
+WBS -> WBS: Save updated status in database
+WBS --> DIS: Confirmation of update
+
+DIS -> NS: Send alert if bin fill level is above threshold
+NS -> Admin: Notify about bin fill level alert
+
+Admin -> WBS: Create waste collection schedule
+WBS -> WBS: Save schedule in database
+WBS -> NS: Notify users about new schedule
+NS -> User: Send notification about schedule
+
+User -> RS: Request new waste bins
+RS -> RS: Save bin request in database
+RS --> User: Acknowledge bin request
+
+User -> RS: Raise complaints
+RS -> RS: Save complaint in database
+RS --> User: Acknowledge complaint
+
+User -> WBS: View fill level of bins
+WBS -> WBS: Retrieve bin status from database
+WBS --> User: Show bin status
+
+Admin -> RS: Manage requests and complaints
+RS -> RS: Process requests and complaints
+RS --> Admin: Update status of requests/complaints
+@enduml
