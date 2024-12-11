@@ -1,0 +1,22 @@
+
+.container {
+    color: white;
+    padding: 20px;
+    min-height: 75vh;
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .text-center {
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .form-label {
+    font-weight: bold;
+    color: #333;
+  }
+  

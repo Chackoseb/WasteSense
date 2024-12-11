@@ -8,7 +8,7 @@ import { BinService } from 'src/app/services/bin.service';
   styleUrls: ['./actions.component.css']
 })
 export class ActionsComponent implements OnInit {
-  selectedAction: string = '';
+  selectedAction: string = 'delete';
   bins: Bin[] = [];
   newBin: Bin = {
     binId: '',

@@ -30,7 +30,7 @@ export class WasteCategorizerComponent {
     const prompt = `Categorize the following waste item and provide disposal instructions. Respond strictly in this format: 
     First line: EXACT category (only Recyclable, E-waste, General Waste, Organic Waste, or Other Waste). 
     Leave a line. 
-    Next line: Disposal instructions and tips in clear, concise bullet points. Maximum: 70 words. 
+    Next line: Disposal instructions and tips in clear, concise bullet points(each bullet maximum 20 words). Maximum: 70 words. 
     Waste item: ${this.waste}`;
 
     try {

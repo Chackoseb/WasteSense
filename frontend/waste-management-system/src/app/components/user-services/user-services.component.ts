@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./user-services.component.css']
 })
 export class UserServicesComponent {
-  activeForm: string | null = null; // To track which form is active
+  activeForm: string | null = 'binRequest'; // To track which form is active
   binRequestForm: FormGroup;
   bulkCollectionForm: FormGroup;
   complaintForm: FormGroup;

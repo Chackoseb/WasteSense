@@ -8,5 +8,12 @@ import { FooterComponent } from "./components/footer/footer.component";
 })
 export class AppComponent {
   title = 'waste-management-system';
-  role: string = 'admin';
+  // role: string = 'user';
+  role: string = localStorage.getItem('role') || 'user';
+
+  logout() {
+    localStorage.removeItem('role');
+    this.role = 'user'; // Revert to user role
+    window.location.href = '/user-home'; // Redirect to user home
+  }
 }

@@ -23,6 +23,7 @@ import { CommonModule } from '@angular/common';
 import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 import { WasteEducationComponent } from './components/waste-education/waste-education.component';
 import { ReplaceCommaPipe } from './pipes/replace-comma.pipe';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import { ReplaceCommaPipe } from './pipes/replace-comma.pipe';
     WasteCategorizerComponent,
     UserDashboardComponent,
     WasteEducationComponent,
-    ReplaceCommaPipe
+    ReplaceCommaPipe,
+    AdminLoginComponent
   ],
   imports: [
     BrowserModule,

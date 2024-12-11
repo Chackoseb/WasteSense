@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+// import { NgModule } from '@angular/core';
+// import { RouterModule, Routes } from '@angular/router';
 import { BinComponent } from './components/bin/bin.component';
 import { CityMapComponent } from './components/city-map/city-map.component';
 import { NotificationComponent } from './components/notification/notification.component';
@@ -15,21 +15,60 @@ import { UserDashboardComponent } from './components/user-dashboard/user-dashboa
 import { WasteEducationComponent } from './components/waste-education/waste-education.component';
 
 
+// const routes: Routes = [
+//   {path: 'citymap', component: CityMapComponent},
+//   {path: 'bins', component: BinComponent},
+//   {path: 'notifications', component: NotificationComponent},
+//   {path: 'schedule', component: ScheduleComponent},
+//   {path: 'actions', component: ActionsComponent},
+//   {path: 'complaints', component: ComplaintsComponent},
+//   {path: 'user-home', component: UserHomeComponent},
+//   {path: 'classify', component: WasteCategorizerComponent},
+//   {path: 'search-bins', component: UserDashboardComponent},
+//   {path: 'services', component: UserServicesComponent},
+//   {path: 'user-notification', component: UserNotificationComponent},
+//   {path: 'user-profile', component: UserProfileComponent},
+//   {path: 'waste-education', component: WasteEducationComponent},
+//   {path: '', redirectTo: '/user-home', pathMatch: 'full'}
+// ];
+
+// @NgModule({
+//   imports: [RouterModule.forRoot(routes)],
+//   exports: [RouterModule]
+// })
+// export class AppRoutingModule { }
+
+
+
+
+
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './guards/admin.guard';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
+
 const routes: Routes = [
-  {path: 'citymap', component: CityMapComponent},
-  {path: 'bins', component: BinComponent},
-  {path: 'notifications', component: NotificationComponent},
-  {path: 'schedule', component: ScheduleComponent},
-  {path: 'actions', component: ActionsComponent},
-  {path: 'complaints', component: ComplaintsComponent},
-  {path: 'user-home', component: UserHomeComponent},
-  {path: 'classify', component: WasteCategorizerComponent},
-  {path: 'search-bins', component: UserDashboardComponent},
-  {path: 'services', component: UserServicesComponent},
-  {path: 'user-notification', component: UserNotificationComponent},
-  {path: 'user-profile', component: UserProfileComponent},
-  {path: 'waste-education', component: WasteEducationComponent},
-  {path: '', redirectTo: '/user-home', pathMatch: 'full'}
+  { path: 'admin-login', component: AdminLoginComponent },
+  // Public/User Routes
+  { path: 'user-home', component: UserHomeComponent },
+  { path: 'classify', component: WasteCategorizerComponent },
+  { path: 'search-bins', component: UserDashboardComponent },
+  { path: 'services', component: UserServicesComponent },
+  { path: 'user-notification', component: UserNotificationComponent },
+  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'waste-education', component: WasteEducationComponent },
+
+  // Admin Routes (Guarded)
+  { path: 'citymap', component: CityMapComponent, canActivate: [AdminGuard] },
+  { path: 'bins', component: BinComponent, canActivate: [AdminGuard] },
+  { path: 'notifications', component: NotificationComponent, canActivate: [AdminGuard] },
+  { path: 'schedule', component: ScheduleComponent, canActivate: [AdminGuard] },
+  { path: 'actions', component: ActionsComponent, canActivate: [AdminGuard] },
+  { path: 'complaints', component: ComplaintsComponent, canActivate: [AdminGuard] },
+
+  // Default Route
+  { path: '', redirectTo: '/user-home', pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -31,4 +31,121 @@
 
 
 
+/* General container styling */
+/* .container { */
+  /* background-color: #f9f9f9; */
+  /* border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+  /* padding: 20px; */
+  /* font-family: 'Arial', sans-serif; */
+/* } */
+
+/* Title styling */
+h2 {
+  /* font-weight: bold;
+  text-transform: uppercase; */
+  color: #155724;
+}
+
+/* Info section styling */
+.info-container {
+  /* background-color: #e9f5e9;
+  border: 1px solid #d4edda; */
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+ 
+}
+
+.info-content{
+  width: 60%;
+}
+
+/* .info-container p {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #155724;
+} */
+
+/* Radio button group styling */
+.radio-group .form-check-label {
+  font-weight: 700;
+  /* color: #333; */
+  cursor: pointer;
+}
+
+.radio-group .form-check-input:checked + .form-check-label {
+  /* color: #155724; */
+  font-weight: bold;
+}
+
+/* Dropdown and search styling */
+.search-container .form-select {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.search-container .form-select:focus {
+  outline: none;
+  border-color: #155724;
+  box-shadow: 0 0 5px rgba(21, 87, 36, 0.5);
+}
+
+/* Table styling */
+.table {
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.table th {
+  background-color: #155724;
+  color: #ffffff;
+  text-transform: uppercase;
+  padding: 10px;
+}
+
+.table td {
+  padding: 10px;
+  color: #333;
+  font-size: 14px;
+}
+
+/* Alerts */
+.alert {
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.alert-info {
+  color: #0c5460;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+/* Additional spacing */
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+
 

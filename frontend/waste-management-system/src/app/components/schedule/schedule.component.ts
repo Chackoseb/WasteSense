@@ -15,7 +15,7 @@ export class ScheduleComponent implements OnInit {
   scheduleForm!: FormGroup;
   bins: Bin[] = [];
   schedules: Schedule[] = [];
-  isNewScheduleFormVisible: boolean = false;
+  isNewScheduleFormVisible: boolean = true;
   isHistoryVisible: boolean = false;
   schedule: Schedule = {
     scheduleId: '',

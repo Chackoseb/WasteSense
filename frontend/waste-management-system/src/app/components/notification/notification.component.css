@@ -30,6 +30,10 @@
   .notification-card.service {
     background-color: #98f79bbd;
   }
+
+  .notification-card.schedule {
+    background-color: #ff95e4c4;
+  }
   
   .whole-content{
     min-height: 70vh;

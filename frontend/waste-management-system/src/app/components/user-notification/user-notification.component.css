@@ -1,3 +1,24 @@
-.whole-content{
+.container {
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .notification-card {
+    padding: 10px;
+    padding-left: 20px;
+    border-radius: 5px;
+    color: black;
+  }
+
+  .notification-card:hover{
+    transform: scale(1.005);
+    box-shadow: 0 0 10px rgba(6, 126, 2, 0.5);
+  }
+ 
+  .notification-card.schedule {
+    background-color: #fce5a1d3;
+  }
+  
+  .whole-content{
     min-height: 70vh;
 }
